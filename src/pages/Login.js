@@ -1,10 +1,9 @@
-// src/pages/Login.js
 import React, { useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState(""); // was email
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("employee");
   const [error, setError] = useState("");
@@ -16,19 +15,17 @@ const Login = () => {
 
     try {
       const response = await axios.post("/v1/auth/login", {
-        email,
+        username,
         password,
         role,
       });
 
       const { token, user } = response.data;
 
-      // Save token and user info
       localStorage.setItem("token", token);
       localStorage.setItem("userRole", user.role);
       localStorage.setItem("userId", user._id);
 
-      // Redirect based on role
       if (user.role === "hr") {
         navigate("/hr");
       } else {
@@ -36,7 +33,7 @@ const Login = () => {
       }
     } catch (err) {
       console.error(err);
-      setError("Invalid email or password.");
+      setError("Invalid username or password.");
     }
   };
 
@@ -47,12 +44,12 @@ const Login = () => {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email: </label>
+          <label>Username: </label>
           <input
-            type="email"
+            type="text"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             autoComplete="username"
           />
         </div>

@@ -16,10 +16,11 @@ const SubmitResignation = () => {
 
     try {
       await axios.post(
-        "/v1/employees/resignations",
-        { reason, preferredExitDate },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+  "/api/user/resign",
+  { lwd: preferredExitDate },
+  { headers: { Authorization: `Bearer ${token}` } }
+);
+
       navigate("/employee");
     } catch (err) {
       console.error(err);

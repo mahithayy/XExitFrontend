@@ -1,6 +1,5 @@
-// src/components/Header.js
 import React from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
 const Header = () => {

@@ -1,4 +1,3 @@
-// src/pages/HRDashboard.js
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import ResignationCard from "../components/ResignationCard";
